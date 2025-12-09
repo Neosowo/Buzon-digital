@@ -1,0 +1,387 @@
+<!-- ============================================
+     ADDITIONAL MODALS AND UI COMPONENTS
+     Add this content before the closing </body> tag
+     ============================================ -->
+
+<!-- Panic/Emergency Modal -->
+<div id="panicModal" class="modal hidden">
+    <div class="modal-overlay"></div>
+    <div class="modal-content glass-card" style="max-width: 500px;">
+        <div class="modal-header">
+            <h2 style="color: var(--danger-600);">
+                <i class='bx bx-error-circle'></i>
+                Ayuda de Emergencia
+            </h2>
+            <button class="modal-close" onclick="document.getElementById('panicModal').classList.add('hidden')">
+                <i class='bx bx-x'></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="alert alert-danger mb-lg">
+                <i class='bx bx-info-circle'></i>
+                <div>
+                    <strong>Si estás en peligro inmediato</strong>
+                    <p>Por favor contacta a los servicios de emergencia</p>
+                </div>
+            </div>
+
+            <div class="glass-card mb-md" style="padding: var(--spacing-md);">
+                <h4>📞 Líneas de Crisis 24/7</h4>
+                <ul class="resource-list">
+                    <li><strong>Línea de la Vida:</strong> 01 800 911 2000</li>
+                    <li><strong>SAPTEL:</strong> 55 5259 8121</li>
+                    <li><strong>Emergencias:</strong> 911</li>
+                </ul>
+            </div>
+
+            <button onclick="SecuritySystem.quickExit()" class="btn btn-danger btn-lg">
+                <i class='bx bx-exit'></i>
+                Salida Rápida
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Notification Preferences Modal -->
+<div id="notificationPreferencesModal" class="modal hidden">
+    <div class="modal-overlay"></div>
+    <div class="modal-content glass-card">
+        <div class="modal-header">
+            <h2>
+                <i class='bx bx-bell'></i>
+                Preferencias de Notificaciones
+            </h2>
+            <button class="modal-close"
+                onclick="document.getElementById('notificationPreferencesModal').classList.add('hidden')">
+                <i class='bx bx-x'></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label class="flex items-center gap-sm">
+                    <input type="checkbox" id="notifEnabled" checked>
+                    <span>Activar notificaciones</span>
+                </label>
+            </div>
+
+            <h4 class="mt-lg mb-md">Tipos de Notificaciones</h4>
+
+            <div class="form-group">
+                <label class="flex items-center gap-sm">
+                    <input type="checkbox" id="notifNewResponse" checked>
+                    <span>Nuevas respuestas del consejero</span>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="flex items-center gap-sm">
+                    <input type="checkbox" id="notifAppointments" checked>
+                    <span>Recordatorios de citas</span>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="flex items-center gap-sm">
+                    <input type="checkbox" id="notifAchievements" checked>
+                    <span>Logros desbloqueados</span>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="flex items-center gap-sm">
+                    <input type="checkbox" id="notifDailyCheckin" checked>
+                    <span>Check-in diario</span>
+                </label>
+            </div>
+
+            <h4 class="mt-lg mb-md">No Molestar</h4>
+
+            <div class="form-group">
+                <label class="flex items-center gap-sm">
+                    <input type="checkbox" id="dndEnabled">
+                    <span>Activar modo No Molestar</span>
+                </label>
+            </div>
+
+            <div class="flex gap-md">
+                <div class="form-group" style="flex: 1;">
+                    <label class="form-label">Desde</label>
+                    <input type="time" id="dndStart" class="form-input" value="22:00">
+                </div>
+                <div class="form-group" style="flex: 1;">
+                    <label class="form-label">Hasta</label>
+                    <input type="time" id="dndEnd" class="form-input" value="08:00">
+                </div>
+            </div>
+
+            <button
+                onclick="NotificationSystem.savePreferencesFromForm(); document.getElementById('notificationPreferencesModal').classList.add('hidden');"
+                class="btn btn-primary btn-lg mt-lg">
+                <i class='bx bx-save'></i>
+                Guardar Preferencias
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Gamification Panel (Student View) -->
+<div id="gamificationPanel" class="glass-card mt-xl" style="display: none;">
+    <div class="card-header">
+        <h2>
+            <i class='bx bx-trophy'></i>
+            Tu Progreso
+        </h2>
+    </div>
+
+    <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));">
+        <div class="stat-card glass-card">
+            <div class="stat-icon primary">
+                <i class='bx bx-star'></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-value" id="userPoints">0</div>
+                <div class="stat-label">Puntos</div>
+            </div>
+        </div>
+
+        <div class="stat-card glass-card">
+            <div class="stat-icon success">
+                <i class='bx bx-trending-up'></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-value" id="userLevel">1</div>
+                <div class="stat-label">Nivel</div>
+            </div>
+        </div>
+
+        <div class="stat-card glass-card">
+            <div class="stat-icon danger">
+                <i class='bx bx-fire'></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-value" id="userStreak">0</div>
+                <div class="stat-label">Racha (días)</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-md">
+        <label class="form-label">Progreso al Siguiente Nivel</label>
+        <div style="background: var(--gray-200); border-radius: var(--radius-full); height: 20px; overflow: hidden;">
+            <div id="levelProgress"
+                style="background: linear-gradient(90deg, var(--primary-500), var(--primary-400)); height: 100%; width: 0%; transition: width 0.3s;">
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-lg">
+        <h4>Desafío del Día</h4>
+        <div id="dailyChallengeCard" class="glass-card mt-sm" style="padding: var(--spacing-md);">
+            <!-- Populated by JavaScript -->
+        </div>
+    </div>
+
+    <div class="mt-lg">
+        <h4>Logros</h4>
+        <div id="achievementsList" class="mt-sm">
+            <!-- Populated by JavaScript -->
+        </div>
+    </div>
+</div>
+
+<!-- Achievement Unlock Modal -->
+<div id="achievementModal" class="modal hidden">
+    <div class="modal-overlay"></div>
+    <div class="modal-content glass-card" style="max-width: 400px; text-align: center;">
+        <div class="modal-body">
+            <div style="font-size: 5rem; margin-bottom: var(--spacing-md);" id="achievementIcon">🎉</div>
+            <h2 style="color: var(--primary-600);">¡Logro Desbloqueado!</h2>
+            <h3 id="achievementName" class="mt-md">Logro</h3>
+            <p id="achievementDesc" class="text-secondary mt-sm">Descripción</p>
+            <div id="achievementPoints" class="badge badge-primary mt-md" style="font-size: 1.125rem;">+10 puntos</div>
+        </div>
+    </div>
+</div>
+
+<!-- Level Up Modal -->
+<div id="levelUpModal" class="modal hidden">
+    <div class="modal-overlay"></div>
+    <div class="modal-content glass-card" style="max-width: 400px; text-align: center;">
+        <div class="modal-body">
+            <div style="font-size: 5rem; margin-bottom: var(--spacing-md);">⬆️</div>
+            <h2 style="color: var(--success-600);">¡Subiste de Nivel!</h2>
+            <h1 id="newLevel" style="font-size: 4rem; color: var(--primary-600); margin: var(--spacing-md) 0;">2</h1>
+            <p class="text-secondary">¡Sigue así! Cada paso cuenta.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Accessibility Controls (Floating Panel) -->
+<div id="accessibilityControls" style="position: fixed; bottom: 20px; right: 20px; z-index: 999; display: none;">
+    <div class="glass-card" style="padding: var(--spacing-md); min-width: 200px;">
+        <h4 style="margin-bottom: var(--spacing-sm);">
+            <i class='bx bx-accessibility'></i>
+            Accesibilidad
+        </h4>
+
+        <div class="flex gap-sm mb-sm">
+            <button id="decreaseFontSize" class="btn btn-sm btn-secondary" title="Reducir tamaño de fuente">
+                <i class='bx bx-minus'></i>
+            </button>
+            <button id="resetFontSize" class="btn btn-sm btn-secondary" title="Restablecer tamaño">
+                A
+            </button>
+            <button id="increaseFontSize" class="btn btn-sm btn-secondary" title="Aumentar tamaño de fuente">
+                <i class='bx bx-plus'></i>
+            </button>
+        </div>
+
+        <button id="toggleHighContrast" class="btn btn-sm btn-secondary" style="width: 100%;">
+            <i class='bx bx-adjust'></i>
+            Alto Contraste
+        </button>
+    </div>
+</div>
+
+<!-- Floating Action Buttons -->
+<div
+    style="position: fixed; bottom: 20px; left: 20px; z-index: 999; display: flex; flex-direction: column; gap: var(--spacing-sm);">
+    <!-- Panic Button -->
+    <button id="panicBtn" class="btn-icon"
+        style="width: 56px; height: 56px; background: var(--danger-500); color: white; box-shadow: var(--shadow-lg);"
+        title="Ayuda de Emergencia">
+        <i class='bx bx-error-circle' style="font-size: 1.5rem;"></i>
+    </button>
+
+    <!-- Accessibility Toggle -->
+    <button
+        onclick="document.getElementById('accessibilityControls').style.display = document.getElementById('accessibilityControls').style.display === 'none' ? 'block' : 'none';"
+        class="btn-icon" style="width: 56px; height: 56px;" title="Accesibilidad">
+        <i class='bx bx-accessibility' style="font-size: 1.5rem;"></i>
+    </button>
+
+    <!-- Notifications Settings -->
+    <button onclick="NotificationSystem.showPreferencesModal()" class="btn-icon" style="width: 56px; height: 56px;"
+        title="Notificaciones">
+        <i class='bx bx-bell' style="font-size: 1.5rem;"></i>
+    </button>
+</div>
+
+<!-- CSS for new components -->
+<style>
+    .achievement-item {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-md);
+        padding: var(--spacing-md);
+        background: var(--gray-100);
+        border-radius: var(--radius-md);
+        margin-bottom: var(--spacing-sm);
+        transition: all var(--transition-base);
+    }
+
+    [data-theme="dark"] .achievement-item {
+        background: var(--gray-800);
+    }
+
+    .achievement-item.locked {
+        opacity: 0.5;
+    }
+
+    .achievement-item.unlocked {
+        background: linear-gradient(135deg, var(--primary-50), var(--success-50));
+        border: 2px solid var(--primary-500);
+    }
+
+    [data-theme="dark"] .achievement-item.unlocked {
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(16, 185, 129, 0.2));
+    }
+
+    .achievement-icon {
+        font-size: 2rem;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        border-radius: var(--radius-lg);
+        flex-shrink: 0;
+    }
+
+    .achievement-info {
+        flex: 1;
+    }
+
+    .achievement-name {
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+    }
+
+    .achievement-desc {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+    }
+
+    .achievement-progress {
+        font-size: 0.75rem;
+        color: var(--primary-600);
+        font-weight: 600;
+        margin-top: 0.25rem;
+    }
+
+    .achievement-points {
+        font-weight: 700;
+        color: var(--primary-600);
+        white-space: nowrap;
+    }
+
+    .points-notification {
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background: linear-gradient(135deg, var(--success-500), var(--success-600));
+        color: white;
+        padding: var(--spacing-md) var(--spacing-lg);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-xl);
+        animation: slideInRight 0.3s ease-out, fadeOut 0.3s ease-in 1.7s forwards;
+        z-index: 9999;
+    }
+
+    @keyframes slideInRight {
+        from {
+            transform: translateX(400px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeOut {
+        to {
+            opacity: 0;
+            transform: translateX(400px);
+        }
+    }
+
+    /* High Contrast Mode */
+    body.high-contrast {
+        --bg-primary: #000;
+        --text-primary: #fff;
+        --text-secondary: #ccc;
+        --border-color: #fff;
+    }
+
+    body.high-contrast .glass-card {
+        background: #000;
+        border: 2px solid #fff;
+    }
+
+    body.high-contrast .btn {
+        border: 2px solid #fff;
+    }
+</style>

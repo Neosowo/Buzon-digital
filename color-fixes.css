@@ -1,0 +1,248 @@
+/* ============================================
+   DARK MODE IMPROVEMENTS & FIXES
+   ============================================ */
+
+/* Modal Close Button - Dark Mode */
+[data-theme="dark"] .modal-close {
+    background: rgba(51, 65, 85, 0.8);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .modal-close:hover {
+    background: rgba(51, 65, 85, 1);
+    color: #fff;
+}
+
+/* Theme Toggle Button Improvements */
+.btn-icon {
+    transition: all 0.3s ease;
+}
+
+.btn-icon:hover {
+    transform: rotate(15deg) scale(1.1);
+}
+
+.btn-icon i {
+    transition: transform 0.3s ease;
+}
+
+/* Status Buttons - Dark Mode */
+[data-theme="dark"] .status-btn {
+    color: #fff !important;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .status-btn:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+[data-theme="dark"] .status-btn.active {
+    background: var(--primary-600);
+    color: #fff !important;
+    border-color: var(--primary-500);
+}
+
+/* Message Detail Modal - Light Mode Text Fix */
+.modal-body {
+    color: var(--text-primary);
+}
+
+.modal-body p,
+.modal-body div,
+.modal-body span,
+.modal-body label {
+    color: var(--text-primary);
+}
+
+.modal-body .text-secondary {
+    color: var(--text-secondary) !important;
+}
+
+/* Ensure good contrast in light mode */
+[data-theme="light"] .modal-content,
+body:not([data-theme="dark"]) .modal-content {
+    color: var(--gray-900);
+}
+
+[data-theme="light"] .modal-body,
+body:not([data-theme="dark"]) .modal-body {
+    color: var(--gray-900);
+}
+
+[data-theme="light"] .modal-body p,
+[data-theme="light"] .modal-body div:not(.badge):not(.alert),
+[data-theme="light"] .modal-body span:not(.badge),
+[data-theme="light"] .modal-body label,
+body:not([data-theme="dark"]) .modal-body p,
+body:not([data-theme="dark"]) .modal-body div:not(.badge):not(.alert),
+body:not([data-theme="dark"]) .modal-body span:not(.badge),
+body:not([data-theme="dark"]) .modal-body label {
+    color: var(--gray-900) !important;
+}
+
+/* Dark mode modal content */
+[data-theme="dark"] .modal-content {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .modal-body p,
+[data-theme="dark"] .modal-body div:not(.badge):not(.alert),
+[data-theme="dark"] .modal-body span:not(.badge),
+[data-theme="dark"] .modal-body label {
+    color: var(--text-primary) !important;
+}
+
+/* Message sender in conversation */
+.message-sender {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary) !important;
+}
+
+.message-time {
+    font-size: 0.875rem;
+    color: var(--text-secondary) !important;
+    margin-left: 0.5rem;
+}
+
+/* Conversation messages */
+.conversation-message {
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+    background: var(--gray-100);
+}
+
+[data-theme="dark"] .conversation-message {
+    background: rgba(51, 65, 85, 0.4);
+}
+
+.conversation-message.counselor {
+    background: var(--primary-50);
+    border-left: 4px solid var(--primary-500);
+}
+
+[data-theme="dark"] .conversation-message.counselor {
+    background: rgba(99, 102, 241, 0.15);
+    border-left: 4px solid var(--primary-500);
+}
+
+.conversation-message.student {
+    background: var(--gray-100);
+    border-left: 4px solid var(--gray-400);
+}
+
+[data-theme="dark"] .conversation-message.student {
+    background: rgba(51, 65, 85, 0.4);
+    border-left: 4px solid var(--gray-600);
+}
+
+.conversation-message p {
+    margin: 0;
+    color: var(--text-primary) !important;
+}
+
+/* Form elements in modals */
+[data-theme="dark"] .modal-body .form-input,
+[data-theme="dark"] .modal-body .form-textarea,
+[data-theme="dark"] .modal-body .form-select {
+    background: rgba(15, 23, 42, 0.6);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .modal-body .form-label {
+    color: var(--text-primary) !important;
+}
+
+/* Buttons in modals */
+[data-theme="dark"] .modal-body .btn {
+    color: #fff;
+}
+
+[data-theme="dark"] .modal-body .btn-secondary {
+    background: rgba(51, 65, 85, 0.8);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+/* btn-outline in light mode - purple text from palette */
+[data-theme="light"] .btn-outline,
+body:not([data-theme="dark"]) .btn-outline {
+    color: #6366f1 !important;
+}
+
+[data-theme="light"] .btn-outline:hover,
+body:not([data-theme="dark"]) .btn-outline:hover {
+    color: #4f46e5 !important;
+}
+
+/* Strong and emphasis tags */
+[data-theme="light"] strong,
+body:not([data-theme="dark"]) strong {
+    color: var(--gray-900) !important;
+}
+
+[data-theme="dark"] strong {
+    color: var(--text-primary) !important;
+}
+
+/* Headings in modals */
+.modal-body h3,
+.modal-body h4,
+.modal-body h5 {
+    color: var(--text-primary) !important;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Code elements */
+[data-theme="light"] code,
+body:not([data-theme="dark"]) code {
+    background: var(--gray-100);
+    color: var(--gray-900);
+}
+
+[data-theme="dark"] code {
+    background: rgba(51, 65, 85, 0.6);
+    color: var(--primary-400);
+}
+
+/* Resource cards text in dark mode */
+[data-theme="dark"] .resource-card h3,
+[data-theme="dark"] .resource-card h4,
+[data-theme="dark"] .resource-card p,
+[data-theme="dark"] .resource-card li,
+[data-theme="dark"] .resource-card strong {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .resource-card ul,
+[data-theme="dark"] .resource-card ol {
+    color: var(--text-primary);
+}
+
+/* Glass card content in dark mode */
+[data-theme="dark"] .glass-card h3,
+[data-theme="dark"] .glass-card h4,
+[data-theme="dark"] .glass-card p,
+[data-theme="dark"] .glass-card li {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .glass-card strong {
+    color: var(--text-primary) !important;
+}
+
+/* List items in dark mode */
+[data-theme="dark"] ul li,
+[data-theme="dark"] ol li {
+    color: var(--text-primary) !important;
+}
+
+/* Ensure all text in cards is visible */
+[data-theme="dark"] .card-header h2,
+[data-theme="dark"] .card-header h3,
+[data-theme="dark"] .card-header p {
+    color: var(--text-primary) !important;
+}

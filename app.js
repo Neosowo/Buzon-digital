@@ -492,18 +492,49 @@ function showBreathingExercise() {
     const modal = document.getElementById('breathingModal');
     modal.classList.remove('hidden');
 
-    // Animate breathing instructions
     const instruction = document.getElementById('breathingInstruction');
+    const circle = document.querySelector('.breathing-circle');
+
+    // Reset state
+    instruction.textContent = 'Prepárate...';
+    circle.className = 'breathing-circle'; // Remove grow/shrink classes
+
     let phase = 0;
-    const phases = ['Inhala...', 'Sostén...', 'Exhala...', 'Sostén...'];
 
-    const breathingInterval = setInterval(() => {
-        instruction.textContent = phases[phase];
-        phase = (phase + 1) % phases.length;
-    }, 4000);
+    // Cycle function
+    const runCycle = () => {
+        // Remove all state classes first
+        circle.classList.remove('grow', 'shrink');
 
-    // Store interval ID to clear later
-    modal.dataset.intervalId = breathingInterval;
+        switch (phase) {
+            case 0: // Inhala
+                instruction.textContent = 'Inhala...';
+                circle.classList.add('grow');
+                break;
+            case 1: // Sostén
+                instruction.textContent = 'Sostén...';
+                // No class change, keeps size from previous state (grow) or just stays
+                break;
+            case 2: // Exhala
+                instruction.textContent = 'Exhala...';
+                circle.classList.remove('grow'); // Return to base size
+                circle.classList.add('shrink');  // Explicit shrink class if needed, or just let it transition back
+                break;
+            case 3: // Sostén (empty)
+                instruction.textContent = 'Sostén...';
+                circle.classList.remove('shrink');
+                break;
+        }
+
+        phase = (phase + 1) % 4;
+    };
+
+    // Initial delay then start
+    setTimeout(() => {
+        runCycle();
+        const interval = setInterval(runCycle, 4000); // 4 seconds per phase
+        modal.dataset.intervalId = interval;
+    }, 1000);
 }
 
 /**
@@ -600,6 +631,24 @@ function initApp() {
     if (gamifPanel && AppState.currentView === 'student') {
         gamifPanel.style.display = 'block';
     }
+
+
+
+    // Mobile counselor button
+    document.getElementById('mobileCounselorBtn')?.addEventListener('click', () => {
+        switchView('counselor');
+    });
+
+    // Mobile nav active state (simple implementation)
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            // Remove active from all
+            navItems.forEach(nav => nav.classList.remove('active'));
+            // Add active to clicked (if it's not the FAB which is handled separately)
+            e.currentTarget.classList.add('active');
+        });
+    });
 
     console.log('Voces Anónimas initialized successfully');
 }

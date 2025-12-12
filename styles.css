@@ -587,15 +587,92 @@ p {
 .header {
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
     z-index: 100;
-    transition: background-color var(--transition-base);
+    width: 100%;
+    transition: all var(--transition-base);
 }
 
 [data-theme="dark"] .header {
     background: rgba(31, 41, 55, 0.8);
+    border-color: var(--border-color);
+}
+
+/* === COUNSELOR ACCESS BUTTON === */
+#counselorAccessBtn {
+    background: rgba(99, 102, 241, 0.1);
+    /* Light primary tint */
+    border: 1px solid var(--primary-300);
+    color: var(--primary-600);
+    font-weight: 600;
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+}
+
+#counselorAccessBtn:hover {
+    background: var(--primary-500);
+    color: white;
+    border-color: var(--primary-500);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+    transform: translateY(-2px);
+}
+
+#counselorAccessBtn i {
+    font-size: 1.25rem;
+    transition: transform var(--transition-base);
+}
+
+#counselorAccessBtn:hover i {
+    transform: scale(1.1);
+}
+
+/* Mobile Responsiveness for Header */
+@media (max-width: 768px) {
+    .header {
+        /* Removed floating styles */
+        padding: 0 var(--spacing-sm);
+        /* Kept padding as it's not a floating style */
+    }
+
+    /* Hide text, show only icon on mobile for specific button */
+    #counselorAccessBtn .btn-text {
+        display: none;
+    }
+
+    #counselorAccessBtn {
+        padding: 0;
+        width: 45px;
+        /* Slightly larger touch target */
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.8);
+        /* Stand out against glass header */
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--primary-200);
+    }
+
+    #counselorAccessBtn:hover {
+        transform: none;
+        /* No lift on touch typically, or keep subtle */
+        background: var(--primary-500);
+    }
+
+    #counselorAccessBtn i {
+        font-size: 1.5rem;
+        /* Larger icon for mobile */
+        margin: 0;
+        display: block;
+        /* Ensure it behaves as block for centering */
+        line-height: 1;
+    }
 }
 
 .nav {
@@ -1245,5 +1322,712 @@ p {
         width: 100%;
         justify-content: space-between;
         margin-top: var(--spacing-sm);
+    }
+}
+
+/* ============================================
+   ENHANCED NAVIGATION STYLES
+   ============================================ */
+
+/* Override header styles for better visual design */
+.header {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+}
+
+.header:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="dark"] .header {
+    background: rgba(31, 41, 55, 0.95) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="dark"] .header:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+.nav {
+    padding: var(--spacing-lg) 0 !important;
+    gap: var(--spacing-md) !important;
+}
+
+.logo {
+    font-weight: 800 !important;
+    background: linear-gradient(135deg, var(--primary-600), var(--primary-400)) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    cursor: pointer !important;
+}
+
+.logo:hover {
+    transform: scale(1.05) !important;
+}
+
+.logo i {
+    background: linear-gradient(135deg, var(--primary-600), var(--primary-400)) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    animation: float 3s ease-in-out infinite !important;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.nav-actions {
+    flex-wrap: wrap !important;
+}
+
+.btn-icon {
+    width: 44px !important;
+    height: 44px !important;
+    border: 2px solid transparent !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-sm) !important;
+    transition: all 0.3s ease;
+}
+
+.btn-icon:hover {
+    background: var(--primary-50) !important;
+    border-color: var(--primary-500) !important;
+    transform: scale(1.1) rotate(5deg) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+.btn-icon:active {
+    transform: scale(0.95) !important;
+}
+
+.btn-icon i {
+    transition: transform 0.3s ease;
+}
+
+[data-theme="dark"] .btn-icon {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="dark"] .btn-icon:hover {
+    border-color: var(--primary-400) !important;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3) !important;
+}
+
+/* ============================================
+   DARK MODE IMPROVEMENTS & FIXES
+   ============================================ */
+
+/* Modal Close Button - Dark Mode */
+[data-theme="dark"] .modal-close {
+    background: rgba(51, 65, 85, 0.8);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .modal-close:hover {
+    background: rgba(51, 65, 85, 1);
+    color: #fff;
+}
+
+/* Status Buttons - Dark Mode */
+[data-theme="dark"] .status-btn {
+    color: #fff !important;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .status-btn:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+[data-theme="dark"] .status-btn.active {
+    background: var(--primary-600);
+    color: #fff !important;
+    border-color: var(--primary-500);
+}
+
+/* Message Detail Modal - Light Mode Text Fix */
+.modal-body {
+    color: var(--text-primary);
+}
+
+.modal-body p,
+.modal-body div,
+.modal-body span,
+.modal-body label {
+    color: var(--text-primary);
+}
+
+.modal-body .text-secondary {
+    color: var(--text-secondary) !important;
+}
+
+/* Ensure good contrast in light mode */
+[data-theme="light"] .modal-content,
+body:not([data-theme="dark"]) .modal-content {
+    color: var(--gray-900);
+}
+
+[data-theme="light"] .modal-body,
+body:not([data-theme="dark"]) .modal-body {
+    color: var(--gray-900);
+}
+
+[data-theme="light"] .modal-body p,
+[data-theme="light"] .modal-body div:not(.badge):not(.alert),
+[data-theme="light"] .modal-body span:not(.badge),
+[data-theme="light"] .modal-body label,
+body:not([data-theme="dark"]) .modal-body p,
+body:not([data-theme="dark"]) .modal-body div:not(.badge):not(.alert),
+body:not([data-theme="dark"]) .modal-body span:not(.badge),
+body:not([data-theme="dark"]) .modal-body label {
+    color: var(--gray-900) !important;
+}
+
+/* Dark mode modal content */
+[data-theme="dark"] .modal-content {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .modal-body p,
+[data-theme="dark"] .modal-body div:not(.badge):not(.alert),
+[data-theme="dark"] .modal-body span:not(.badge),
+[data-theme="dark"] .modal-body label {
+    color: var(--text-primary) !important;
+}
+
+/* Message sender in conversation */
+.message-sender {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary) !important;
+}
+
+.message-time {
+    font-size: 0.875rem;
+    color: var(--text-secondary) !important;
+    margin-left: 0.5rem;
+}
+
+/* Conversation messages - Dark Mode */
+[data-theme="dark"] .conversation-message {
+    background: rgba(51, 65, 85, 0.4);
+}
+
+[data-theme="dark"] .conversation-message.counselor {
+    background: rgba(99, 102, 241, 0.15);
+    border-left: 4px solid var(--primary-500);
+}
+
+[data-theme="dark"] .conversation-message.student {
+    background: rgba(51, 65, 85, 0.4);
+    border-left: 4px solid var(--gray-600);
+}
+
+.conversation-message p {
+    margin: 0;
+    color: var(--text-primary) !important;
+}
+
+/* Form elements in modals */
+[data-theme="dark"] .modal-body .form-input,
+[data-theme="dark"] .modal-body .form-textarea,
+[data-theme="dark"] .modal-body .form-select {
+    background: rgba(15, 23, 42, 0.6);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .modal-body .form-label {
+    color: var(--text-primary) !important;
+}
+
+/* Buttons in modals */
+[data-theme="dark"] .modal-body .btn {
+    color: #fff;
+}
+
+[data-theme="dark"] .modal-body .btn-secondary {
+    background: rgba(51, 65, 85, 0.8);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+/* btn-outline in light mode - purple text from palette */
+[data-theme="light"] .btn-outline,
+body:not([data-theme="dark"]) .btn-outline {
+    color: #6366f1 !important;
+}
+
+[data-theme="light"] .btn-outline:hover,
+body:not([data-theme="dark"]) .btn-outline:hover {
+    color: #4f46e5 !important;
+}
+
+/* Strong and emphasis tags */
+[data-theme="light"] strong,
+body:not([data-theme="dark"]) strong {
+    color: var(--gray-900) !important;
+}
+
+[data-theme="dark"] strong {
+    color: var(--text-primary) !important;
+}
+
+/* Headings in modals */
+.modal-body h3,
+.modal-body h4,
+.modal-body h5 {
+    color: var(--text-primary) !important;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Code elements */
+[data-theme="light"] code,
+body:not([data-theme="dark"]) code {
+    background: var(--gray-100);
+    color: var(--gray-900);
+}
+
+[data-theme="dark"] code {
+    background: rgba(51, 65, 85, 0.6);
+    color: var(--primary-400);
+}
+
+/* Resource cards text in dark mode */
+[data-theme="dark"] .resource-card h3,
+[data-theme="dark"] .resource-card h4,
+[data-theme="dark"] .resource-card p,
+[data-theme="dark"] .resource-card li,
+[data-theme="dark"] .resource-card strong {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .resource-card ul,
+[data-theme="dark"] .resource-card ol {
+    color: var(--text-primary);
+}
+
+/* Glass card content in dark mode */
+[data-theme="dark"] .glass-card h3,
+[data-theme="dark"] .glass-card h4,
+[data-theme="dark"] .glass-card p,
+[data-theme="dark"] .glass-card li {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .glass-card strong {
+    color: var(--text-primary) !important;
+}
+
+/* List items in dark mode */
+[data-theme="dark"] ul li,
+[data-theme="dark"] ol li {
+    color: var(--text-primary) !important;
+}
+
+/* Ensure all text in cards is visible */
+[data-theme="dark"] .card-header h2,
+[data-theme="dark"] .card-header h3,
+[data-theme="dark"] .card-header p {
+    color: var(--text-primary) !important;
+}
+
+/* ============================================
+   ENHANCED RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablet and below */
+@media (max-width: 1024px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+/* Mobile landscape and below */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem !important;
+        line-height: 1.3 !important;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem !important;
+        padding: 0 var(--spacing-md) !important;
+    }
+
+    .nav {
+        padding: var(--spacing-md) 0 !important;
+    }
+
+    .logo {
+        font-size: 1.25rem !important;
+    }
+
+    .logo i {
+        font-size: 1.75rem !important;
+    }
+
+    .nav-actions {
+        gap: var(--spacing-sm) !important;
+    }
+
+    .btn-outline {
+        font-size: 0.875rem !important;
+        padding: var(--spacing-xs) var(--spacing-md) !important;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr !important;
+        gap: var(--spacing-md) !important;
+    }
+
+    .filters-grid,
+    .resources-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .message-item {
+        padding: var(--spacing-md) !important;
+    }
+
+    .message-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+
+    .modal-content {
+        margin: var(--spacing-sm) !important;
+        padding: var(--spacing-lg) !important;
+        max-height: 95vh !important;
+    }
+
+    .input-group {
+        flex-direction: column !important;
+    }
+
+    .input-group .btn {
+        width: 100% !important;
+    }
+
+    .mood-selector {
+        justify-content: center !important;
+    }
+
+    .mood-btn {
+        width: 55px !important;
+        height: 55px !important;
+        font-size: 1.75rem !important;
+    }
+
+    .status-selector {
+        justify-content: center !important;
+    }
+
+    .status-btn {
+        flex: 1 !important;
+        min-width: 80px !important;
+    }
+}
+
+/* Mobile portrait */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.75rem !important;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9375rem !important;
+    }
+
+    .nav {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: var(--spacing-md) !important;
+    }
+
+    .logo {
+        justify-content: center !important;
+    }
+
+    .nav-actions {
+        width: 100% !important;
+        justify-content: center !important;
+        flex-wrap: nowrap !important;
+    }
+
+    .btn-icon {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .btn {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+
+    .stat-card {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: var(--spacing-md) !important;
+    }
+
+    .stat-icon {
+        margin: 0 auto !important;
+    }
+
+    .message-meta {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        width: 100% !important;
+    }
+
+    .badge {
+        font-size: 0.75rem !important;
+        padding: 0.25rem 0.5rem !important;
+    }
+
+    .tracking-code-display {
+        flex-direction: column !important;
+        text-align: center !important;
+    }
+
+    .tracking-code-display code {
+        font-size: 1.25rem !important;
+    }
+
+    .mood-btn {
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 1.5rem !important;
+    }
+
+    .modal-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: var(--spacing-sm) !important;
+    }
+
+    .modal-close {
+        position: absolute !important;
+        top: var(--spacing-md) !important;
+        right: var(--spacing-md) !important;
+    }
+
+    .dashboard-header h1 {
+        font-size: 1.5rem !important;
+    }
+
+    .dashboard-header .flex {
+        flex-direction: column !important;
+        gap: var(--spacing-md) !important;
+    }
+
+    .breathing-circle {
+        width: 150px !important;
+        height: 150px !important;
+    }
+
+    .breathing-instruction {
+        font-size: 1.25rem !important;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 1.5rem !important;
+    }
+
+    .logo {
+        font-size: 1.125rem !important;
+    }
+
+    .logo i {
+        font-size: 1.5rem !important;
+    }
+
+    .mood-btn {
+        width: 45px !important;
+        height: 45px !important;
+        font-size: 1.25rem !important;
+    }
+}
+
+/* Landscape orientation optimizations */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero {
+        padding: var(--spacing-lg) 0 !important;
+    }
+
+    .section {
+        padding: var(--spacing-lg) 0 !important;
+    }
+
+    .modal-content {
+        max-height: 85vh !important;
+    }
+}
+
+/* === MOBILE BOTTOM NAVIGATION & TWEAKS === */
+.bottom-nav {
+    display: none;
+}
+
+/* Breathing Animation States */
+.breathing-circle {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, var(--primary-200), var(--primary-400));
+    border-radius: 50%;
+    margin: 0 auto var(--spacing-xl);
+    transform: scale(1);
+    transition: transform 4s ease-in-out;
+    /* Smooth 4s transition matching breath cycle */
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+}
+
+.breathing-circle.grow {
+    transform: scale(1.5);
+    background: linear-gradient(135deg, var(--primary-300), var(--primary-500));
+    box-shadow: 0 0 40px rgba(99, 102, 241, 0.5);
+}
+
+.breathing-circle.shrink {
+    transform: scale(1);
+}
+
+@media (max-width: 768px) {
+
+    /* Hide Desktop Counselor Button Container */
+    .nav-actions {
+        display: none !important;
+    }
+
+    /* Mobile Header Centering */
+    .header .nav {
+        justify-content: center;
+        /* Center logo since button is gone */
+        padding: var(--spacing-sm) 0;
+        /* Reduce padding to minimize "margin bottom" look */
+    }
+
+    .logo {
+        margin: 0 auto;
+        /* Enhance centering */
+    }
+
+    /* Show Bottom Nav */
+    .bottom-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-top-left-radius: 24px;
+        border-top-right-radius: 24px;
+        box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+        justify-content: space-around;
+        align-items: center;
+        padding: 0 var(--spacing-md);
+        z-index: 1000;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    [data-theme="dark"] .bottom-nav {
+        background: rgba(31, 41, 55, 0.9);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Nav Items */
+    .nav-item {
+        color: var(--text-secondary);
+        font-size: 1.5rem;
+        padding: 10px;
+        border-radius: 50%;
+        transition: all var(--transition-base);
+        position: relative;
+    }
+
+    .nav-item:hover,
+    .nav-item.active {
+        color: var(--primary-500);
+        transform: translateY(-2px);
+    }
+
+    .nav-item.active::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        height: 4px;
+        background: var(--primary-500);
+        border-radius: 50%;
+    }
+
+    /* Floating Action Button (FAB) */
+    .nav-fab-container {
+        position: relative;
+        top: -25px;
+        /* Lift it up */
+        width: 65px;
+        height: 65px;
+        background: var(--bg-primary);
+        /* Same as body bg to create "cutout" look */
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+        box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.05);
+        /* Subtle shadow for depth */
+    }
+
+    [data-theme="dark"] .nav-fab-container {
+        background: var(--gray-900);
+        /* Match dark mode body bg */
+    }
+
+    .nav-fab {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+        color: white;
+        border: none;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.75rem;
+        cursor: pointer;
+        transition: all var(--transition-base);
+    }
+
+    .nav-fab:hover {
+        transform: scale(1.05) rotate(10deg);
+        box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+    }
+
+    /* Adjust Footer Visibility */
+    footer {
+        padding-bottom: 90px !important;
+        /* Extra padding so bottom nav doesn't cover footer content */
     }
 }

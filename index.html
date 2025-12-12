@@ -19,8 +19,12 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="enhanced-styles.css">
-    <link rel="stylesheet" href="color-fixes.css">
+
+    <style>
+        #counselorAccessBtn {
+            border-radius: 50px;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,10 +37,11 @@
                     <i class='bx bxs-message-dots'></i>
                     <span>Voces Anónimas</span>
                 </div>
+
                 <div class="nav-actions">
-                    <button id="counselorAccessBtn" class="btn btn-outline">
+                    <button id="counselorAccessBtn" class="btn btn-primary btn-lg">
                         <i class='bx bx-shield-alt-2'></i>
-                        Acceso Consejeros
+                        <span class="btn-text">Acceso Consejeros</span>
                     </button>
                 </div>
             </nav>
@@ -214,37 +219,14 @@
             </section>
 
             <!-- Resources Section -->
-            <section class="section">
+            <section id="resources" class="section">
                 <div class="container">
                     <h2 class="text-center mb-xl">Recursos de Apoyo</h2>
 
                     <div class="resources-grid">
-                        <!-- Crisis Hotlines -->
-                        <div class="glass-card resource-card">
-                            <div class="resource-icon danger">
-                                <i class='bx bx-phone-call'></i>
-                            </div>
-                            <h3>Líneas de Crisis</h3>
-                            <p>Si estás en crisis o necesitas ayuda inmediata:</p>
-                            <ul class="resource-list">
-                                <li><strong>Línea Nacional:</strong> 01-800-123-4567</li>
-                                <li><strong>WhatsApp Crisis:</strong> +52 55 1234 5678</li>
-                                <li><strong>Emergencias:</strong> 911</li>
-                            </ul>
-                        </div>
 
                         <!-- Self-Help -->
-                        <div class="glass-card resource-card">
-                            <div class="resource-icon primary">
-                                <i class='bx bx-heart'></i>
-                            </div>
-                            <h3>Ejercicios de Calma</h3>
-                            <p>Técnicas para manejar la ansiedad:</p>
-                            <button class="btn btn-outline btn-sm mt-sm" onclick="showBreathingExercise()">
-                                <i class='bx bx-wind'></i>
-                                Ejercicio de Respiración
-                            </button>
-                        </div>
+
 
                         <!-- Articles -->
                         <div class="glass-card resource-card">
@@ -482,212 +464,31 @@
     </footer>
 
 
+    <!-- Mobile Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active" data-target="home">
+            <i class='bx bx-home-alt'></i>
+        </a>
+        <a href="#messageForm" class="nav-item" data-target="write">
+            <i class='bx bx-edit-alt'></i>
+        </a>
+        <div class="nav-fab-container">
+            <button id="mobileCounselorBtn" class="nav-fab">
+                <i class='bx bx-shield-alt-2'></i>
+            </button>
+        </div>
+        <a href="#trackingResults" class="nav-item" data-target="track">
+            <i class='bx bx-search-alt'></i>
+        </a>
+        <a href="#resources" class="nav-item" data-target="resources">
+            <i class='bx bx-book-heart'></i>
+        </a>
+    </nav>
+
     <!-- Scripts -->
     <script src="app.js"></script>
     <script src="crisis-detection.js"></script>
     <script src="counselor.js"></script>
-
-
-
-    <!-- Floating Action Buttons -->
-    <div
-        style="position: fixed; bottom: 20px; left: 20px; z-index: 999; display: flex; flex-direction: column; gap: 12px;">
-        <button class="floating-btn panic" onclick="document.getElementById('panicModal').classList.remove('hidden')"
-            title="Ayuda de Emergencia">
-            <i class='bx bx-error-circle'></i>
-        </button>
-
-        <button class="floating-btn accessibility"
-            onclick="const panel = document.getElementById('accessibilityControls'); panel.style.display = panel.style.display === 'none' ? 'block' : 'none';"
-            title="Accesibilidad">
-            <i class='bx bx-accessibility'></i>
-        </button>
-
-        <button class="floating-btn notifications" onclick="alert('Configuración de notificaciones');"
-            title="Notificaciones">
-            <i class='bx bx-bell'></i>
-        </button>
-    </div>
-
-    <!-- Accessibility Controls Panel -->
-    <div id="accessibilityControls" style="position: fixed; bottom: 20px; right: 20px; z-index: 999; display: none;">
-        <div class="glass-card" style="padding: 16px; min-width: 200px;">
-            <h4 style="margin-bottom: 12px;"><i class='bx bx-accessibility'></i> Accesibilidad</h4>
-            <div style="display: flex; gap: 8px; margin-bottom: 8px;">
-                <button onclick="document.documentElement.style.fontSize = '90%';" class="btn btn-sm btn-secondary"
-                    title="Reducir"><i class='bx bx-minus'></i></button>
-                <button onclick="document.documentElement.style.fontSize = '100%';" class="btn btn-sm btn-secondary"
-                    title="Normal">A</button>
-                <button onclick="document.documentElement.style.fontSize = '110%';" class="btn btn-sm btn-secondary"
-                    title="Aumentar"><i class='bx bx-plus'></i></button>
-            </div>
-            <button onclick="document.body.classList.toggle('high-contrast');" class="btn btn-sm btn-secondary"
-                style="width: 100%;"><i class='bx bx-adjust'></i> Alto Contraste</button>
-        </div>
-    </div>
-
-    <!-- Panic Modal -->
-    <div id="panicModal" class="modal hidden">
-        <div class="modal-overlay" onclick="document.getElementById('panicModal').classList.add('hidden')"></div>
-        <div class="modal-content glass-card" style="max-width: 500px;">
-            <div class="modal-header">
-                <h2 style="color: #ef4444;"><i class='bx bx-error-circle'></i> Ayuda de Emergencia</h2>
-                <button class="modal-close" onclick="document.getElementById('panicModal').classList.add('hidden')"><i
-                        class='bx bx-x'></i></button>
-            </div>
-            <div class="modal-body">
-                <div class="alert alert-danger" style="margin-bottom: 24px;">
-                    <i class='bx bx-info-circle'></i>
-                    <div><strong>Si estás en peligro inmediato</strong>
-                        <p>Contacta servicios de emergencia</p>
-                    </div>
-                </div>
-                <div class="glass-card" style="padding: 16px; margin-bottom: 16px;">
-                    <h4>📞 Líneas de Crisis 24/7</h4>
-                    <ul style="margin-top: 12px; padding-left: 20px;">
-                        <li><strong>Línea de la Vida:</strong> 01 800 911 2000</li>
-                        <li><strong>SAPTEL:</strong> 55 5259 8121</li>
-                        <li><strong>Emergencias:</strong> 911</li>
-                    </ul>
-                </div>
-                <button onclick="window.location.href='https://www.google.com';" class="btn btn-danger btn-lg"><i
-                        class='bx bx-exit'></i> Salida Rápida</button>
-            </div>
-        </div>
-    </div>
-
-    <style>
-        /* Floating Buttons */
-        .floating-btn {
-            width: 56px;
-            height: 56px;
-            border-radius: 16px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .floating-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.4);
-            border-color: rgba(255, 255, 255, 0.4);
-        }
-
-        .floating-btn i {
-            font-size: 1.5rem;
-            color: white;
-            transition: color 0.3s ease;
-        }
-
-        .floating-btn:hover i {
-            color: #000 !important;
-        }
-
-        .floating-btn.panic {
-            background: #ef4444;
-        }
-
-        .floating-btn.accessibility {
-            background: #6366f1;
-        }
-
-        .floating-btn.notifications {
-            background: #f59e0b;
-        }
-
-        /* Navigation Bar */
-        .header {
-            background: rgba(255, 255, 255, 0.95) !important;
-            backdrop-filter: blur(20px) !important;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        [data-theme="dark"] .header {
-            background: rgba(15, 23, 42, 0.95) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .logo {
-            font-weight: 800;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: float 3s ease-in-out infinite;
-            cursor: pointer;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-5px);
-            }
-        }
-
-        .btn-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .btn-icon:hover {
-            background: rgba(99, 102, 241, 0.2);
-            border-color: rgba(99, 102, 241, 0.4);
-            transform: rotate(15deg) scale(1.1);
-        }
-
-        .btn-outline {
-            border: 2px solid rgba(99, 102, 241, 0.3);
-            background: rgba(99, 102, 241, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .btn-outline:hover {
-            background: rgba(99, 102, 241, 0.15);
-            border-color: rgba(99, 102, 241, 0.6);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            div[style*="bottom: 20px; left: 20px"] {
-                flex-direction: row !important;
-                bottom: 10px !important;
-                left: 50% !important;
-                transform: translateX(-50%);
-            }
-
-            .floating-btn {
-                width: 48px !important;
-                height: 48px !important;
-            }
-
-            #accessibilityControls {
-                bottom: 70px !important;
-                right: 50% !important;
-                transform: translateX(50%);
-            }
-        }
-    </style>
-
 </body>
 
 </html>
